@@ -168,6 +168,35 @@ int main(int argc, char* argv[]){
     float grid_size = 2.0;        //[m]
     float robot_radius = 1.0;   //[m]
 
+     vector<float> ox_;
+  vector<float> oy_;
+
+  // add edges
+  for(float i=0; i<60; i++){
+    ox_.push_back(i);
+    oy_.push_back(60.0);
+  }
+  for(float i=0; i<60; i++){
+    ox_.push_back(60.0);
+    oy_.push_back(i);
+  }
+  for(float i=0; i<61; i++){
+    ox_.push_back(i);
+    oy_.push_back(60.0);
+  }
+  for(float i=0; i<61; i++){
+    ox_.push_back(0.0);
+    oy_.push_back(i);
+  }
+  for(float i=0; i<40; i++){
+    ox_.push_back(20.0);
+    oy_.push_back(i);
+  }
+  for(float i=0; i<40; i++){
+    ox_.push_back(40.0);
+    oy_.push_back(60.0 - i);
+  }
+
     
 
 
