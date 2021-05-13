@@ -8,5 +8,12 @@ project(plotter VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(plotter ${CMAKE_CURRENT_SOURCE_DIR}/src/plotter.cpp)
+if(NOT CMAKE_BUILD_TYPE )
+set( CMAKE_BUILD_TYPE Debug)
+endif ()
+
+set( CMAKE_CXX_FLAGS "-Wall -Wextra ")
+set( CMAKE_CXX_FLAGS_DEBUG "-g -O1")
+
+add_executable(A_star ${CMAKE_CURRENT_SOURCE_DIR}/src/A_Star.cpp)
 

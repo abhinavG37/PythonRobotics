@@ -8,9 +8,9 @@
 #include <vector>
 #include <map>
 #include <string>
-using namespace std;
 #include <eigen3/Eigen/Dense>
 #include <sciplot/sciplot.hpp>
+using namespace std;
 
 class A_Star_planner{
 public:
@@ -19,7 +19,13 @@ public:
         grid = grid_;
         resolution = resolution_;
         rr = rr_;
-        motion = get_motion_model();
+        ox = ox_;
+        oy = oy_;
+        this->min_x=0.0, this->min_y = 0.0;
+        this->max_x=0.0, this->max_y = 0.0;
+        this->x_width = 0.0; this->y_width = 0.0;
+        this->motion = this->get_motion_model();
+        this->obmap =this->calc_obmap(ox, oy);
     } //CONSTRUCTOR FOR CLASS A*_Planner
 
     ////////////////////////CLASS NODE//////////////////////////////////////////////////
@@ -97,7 +103,7 @@ public:
             closed_set.at(c_id) = current; // add traversed node to closed set
             
             /////////continue here from line 110
-            for (int i =0; i<motion.size(); i++){
+            for (unsigned int i =0; i<motion.size(); i++){
                 Node* node = new Node(current->x+motion[i][0],
                                                         current->y+motion[i][1],
                                                         current->cost+motion[i][2], 
@@ -122,10 +128,11 @@ public:
 
     vector<vector<int>> calc_obmap(vector<float> ox, vector<float> oy){
         
-        this->min_x = round(*min_element(ox.begin(), ox.end()));
-        this->max_x = round(*min_element(ox.begin(), ox.end()));
-        this->min_y = round(*min_element(oy.begin(), oy.end()));
-        this->max_y = round(*min_element(oy.begin(), oy.end()));
+        this->min_x = round(*std::min_element(ox.begin(), ox.end()));
+        this->max_x = round(*std::max_element(ox.begin(), ox.end()));
+        this->min_y = round(*std::max_element(oy.begin(), oy.end()));
+        this->max_y = round(*std::max_element(oy.begin(), oy.end()));
+    
         printf("min_x: %f", this->min_x);
         printf("min_y: %f", this->min_y);
         printf("max_x: %f", this->max_x);
@@ -141,7 +148,7 @@ public:
             int x = this->calc_grid_pos(i, this->min_x);
             for(int j = 0; j<this->y_width; j++){
                 int y = this->calc_grid_pos(j, this->min_y);
-                for(int k = 0; k<ox.size(); k++){
+                for(unsigned int k = 0; k<ox.size(); k++){
                     float d = sqrt(pow((ox[k]-x), 2)+pow((oy[k]-y), 2));
                     if(d<=this->rr){
                         temp_obmap[i][j] = 1; 
@@ -160,7 +167,7 @@ public:
         rx.push_back(this->calc_grid_pos(goal->x, this->min_x));
         ry.push_back(this->calc_grid_pos(goal->y, this->min_y));
         int parent_index = goal->parent_index;
-        while(parent_index != NULL){
+        while(parent_index != -1){
             Node* n = closed_set.at(parent_index);
             rx.push_back(this->calc_grid_pos(n->x, this->min_x));
             ry.push_back(this->calc_grid_pos(n->y, this->min_y));
@@ -225,6 +232,7 @@ public:
     vector<vector<int>> obmap;
     float resolution, rr, min_x, min_y, max_x, max_y, x_width, y_width;
     vector<vector<float>> motion;
+    vector<float> ox, oy;
 //////////////////END OF A_STAR_PLANNER CLASS/////////////////
 };
 
