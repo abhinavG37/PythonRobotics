@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/src/A_Star.cpp
+iostream
+-
+cmath
+-
+vector
+-
+map
+-
+string
+-
+eigen3/Eigen/Dense
+-
+sciplot/sciplot.hpp
+-
+

@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/abhinav137/Desktop/Code Projects/PyRobotics/build/C++",
+  "command": "/usr/bin/c++    -Wall -Wextra  -g -O0   -std=gnu++17 -o CMakeFiles/Test.dir/src/Test.cpp.o -c \"/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/src/Test.cpp\"",
+  "file": "/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/src/Test.cpp"
+},
+{
+  "directory": "/home/abhinav137/Desktop/Code Projects/PyRobotics/build/C++",
+  "command": "/usr/bin/c++    -Wall -Wextra  -g -O0   -std=gnu++17 -o CMakeFiles/A_star.dir/src/A_Star.cpp.o -c \"/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/src/A_Star.cpp\"",
+  "file": "/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/src/A_Star.cpp"
+}
+]

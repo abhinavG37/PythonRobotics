@@ -13,7 +13,9 @@ set( CMAKE_BUILD_TYPE Debug)
 endif ()
 
 set( CMAKE_CXX_FLAGS "-Wall -Wextra ")
-set( CMAKE_CXX_FLAGS_DEBUG "-g -O1")
+set( CMAKE_CXX_FLAGS_DEBUG "-g -O0")
 
 add_executable(A_star ${CMAKE_CURRENT_SOURCE_DIR}/src/A_Star.cpp)
+
+add_executable(Test ${CMAKE_CURRENT_SOURCE_DIR}/src/Test.cpp)
 

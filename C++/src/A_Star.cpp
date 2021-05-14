@@ -1,8 +1,8 @@
 //A* Grid Planning C++ Variant 
 //Uses Sciplot plotting as a substitute for matplotlib
 //Eigen used for Linear algebra 
-
-// STL Vectors used for grid formation and update
+//vector<float/int> used for grid formation and update
+//map<int, Node*> used for maintaining traversed nodes
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -67,31 +67,34 @@ public:
         Node* startNode =  new Node(this->calc_xy_index(sx, this->min_x), this->calc_xy_index(sy, this->min_y), 0.0, -1);
         Node* goalNode =  new Node(this->calc_xy_index(gx, this->min_x), this->calc_xy_index(gy, this->min_y), 0.0, -1);
         //pointer to an object created 
-
+        printf("START----------NODE_X: %f\tNODE_Y:%f\tNODE_COST:%f\tPARENT_INDEX:%f", startNode->x, startNode->y, startNode->cost, startNode->parent_index);
+        printf("GOAL----------NODE_X: %f\tNODE_Y:%f\tNODE_COST:%f\tPARENT_INDEX:%f", goalNode->x, goalNode->y, goalNode->cost, goalNode->parent_index);
+        
         map<int, Node*> open_set;
         map<int, Node*> closed_set;
-                                    //calc_grid_index(Node* node){  TAKES A pointer to NODE object
-        open_set.at(this->calc_grid_index(startNode)) = startNode;
 
+// {  TAKES A pointer to NODE object}     //calc_grid_index(Node* node)
+         open_set.insert(pair<int, Node*>(this->calc_grid_index(startNode), startNode));
         while(true){
             if(open_set.size() == 0){
                 printf("OPEN SET EMPTY");
                 break;
             }
-        
             
             //LINE 81: Needs a lambda function equivalent ---C++ functor---- to capture max cost Node in open_set  
             map<int, Node*>::iterator it;
             float temp_min_cost = 0; 
             int c_id= 0; //grid index of current node used as key in open_set 
             
+            //BLOCK FUNCTIONING NOT PROPER
             for(it = open_set.begin(); it != open_set.end(); it++){
+                temp_min_cost = (it->second->cost)+this->calc_heuristic(goalNode, it->second);
                 if( (it->second->cost)+this->calc_heuristic(goalNode, it->second) <= temp_min_cost){
                     temp_min_cost =(it->second->cost)+this->calc_heuristic(goalNode, it->second);
                     c_id = it->first;
                 }
             } //find key corresponding to a temp_min_cost
-            Node* current = open_set.at(c_id);
+            Node* current = open_set.at(c_id); //ERROR
 
             if(current->x  == goalNode->x && current->y == goalNode->y){
                 printf("-------------Goal Found-------------");
@@ -100,8 +103,9 @@ public:
             }
             
             open_set.erase(c_id); //Deletes pair at key value c_id
-            closed_set.at(c_id) = current; // add traversed node to closed set
+            open_set.insert(pair<int, Node*>(c_id, current));  // add traversed node to closed set
             
+        
             /////////continue here from line 110
             for (unsigned int i =0; i<motion.size(); i++){
                 Node* node = new Node(current->x+motion[i][0],
@@ -116,9 +120,9 @@ public:
                 //Node exists on already traversed node then do nothin
                 if(closed_set.count(n_id)>0){ continue; }
 
-                if(open_set.count(n_id)==0){ open_set.at(n_id) = node; }
+                if(open_set.count(n_id)==0){ open_set.insert(pair<int, Node*>(n_id, node)); }
                 else{
-                    if(open_set.at(n_id)->cost > node->cost){open_set.at(n_id) = node;}
+                    if(open_set.at(n_id)->cost > node->cost){open_set.insert(pair<int, Node*>(n_id, node)); }
                 }
             }
         }
@@ -130,7 +134,7 @@ public:
         
         this->min_x = round(*std::min_element(ox.begin(), ox.end()));
         this->max_x = round(*std::max_element(ox.begin(), ox.end()));
-        this->min_y = round(*std::max_element(oy.begin(), oy.end()));
+        this->min_y = round(*std::min_element(oy.begin(), oy.end()));
         this->max_y = round(*std::max_element(oy.begin(), oy.end()));
     
         printf("min_x: %f", this->min_x);
@@ -158,6 +162,7 @@ public:
             }
         }
         obmap = temp_obmap;
+        
         return obmap;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -259,23 +264,23 @@ int main(int argc, char* argv[]){
     vector<float> ox_;
     vector<float> oy_;
     // add edges
-    for(float i=0; i<60; i++){
+    for(float i=-10.0; i<60.0; i++){
         ox_.push_back(i);
-        oy_.push_back(60.0);
+        oy_.push_back(-10.0);
     }
-    for(float i=0; i<60; i++){
+    for(float i=-10.0; i<60.0; i++){
         ox_.push_back(60.0);
         oy_.push_back(i);
     }
-    for(float i=0; i<61; i++){
+    for(float i=-10.0; i<61; i++){
         ox_.push_back(i);
         oy_.push_back(60.0);
     }
-    for(float i=0; i<61; i++){
-        ox_.push_back(0.0);
+    for(float i=-10.0; i<61; i++){
+        ox_.push_back(-10.0);
         oy_.push_back(i);
     }
-    for(float i=0; i<40; i++){
+    for(float i=-10.0; i<40; i++){
         ox_.push_back(20.0);
         oy_.push_back(i);
     }
@@ -288,6 +293,6 @@ int main(int argc, char* argv[]){
     A_Star_planner planner_obj(grid_rows, grid_cols, grid_resolution, ox_, oy_, robot_radius);
     //Calling planner function
     vector<vector<float>> rxry = planner_obj.planner(sx, sy, gx,gy);
-
+    cout<<"CODE FINISHED"<<endl;
 
 }
