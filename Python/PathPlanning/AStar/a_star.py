@@ -71,11 +71,16 @@ class AStarPlanner:
         open_set, closed_set = dict(), dict()
         open_set[self.calc_grid_index(start_node)] = start_node
         print("OPEN SET={}".format(open_set))
+        
+        count = 0
         while 1:
+            count += 1
+            print(count)
             if len(open_set) == 0:
                 print("Open set is empty..")
                 break
-
+            if count == 720:
+                print(count)
             c_id = min( #RETURN KEY WITH SMALLEST NET COST
                 open_set,
                 key=lambda o: open_set[o].cost + self.calc_heuristic(goal_node,

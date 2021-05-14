@@ -3,6 +3,9 @@
 //Eigen used for Linear algebra 
 //vector<float/int> used for grid formation and update
 //map<int, Node*> used for maintaining traversed nodes
+/*Major Chunk working now------------VISUALIZATION PENDING*/
+
+
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -75,7 +78,10 @@ public:
 
 // {  TAKES A pointer to NODE object}     //calc_grid_index(Node* node)
          open_set.insert(pair<int, Node*>(this->calc_grid_index(startNode), startNode));
+         int count =0;
         while(true){
+            count += 1;
+            printf("%d\n", count);
             if(open_set.size() == 0){
                 printf("OPEN SET EMPTY");
                 break;
@@ -86,6 +92,7 @@ public:
             float temp_min_cost = 0; 
             int c_id= 0; //grid index of current node used as key in open_set 
             
+     
             //BLOCK FUNCTIONING NOT PROPER
             for(it = open_set.begin(); it != open_set.end(); it++){
                 temp_min_cost = (it->second->cost)+this->calc_heuristic(goalNode, it->second);
@@ -100,11 +107,12 @@ public:
                 printf("-------------Goal Found-------------");
                 goalNode->parent_index = current->parent_index;
                 goalNode->cost = current->cost;    
+                break;
             }
             
             open_set.erase(c_id); //Deletes pair at key value c_id
-            open_set.insert(pair<int, Node*>(c_id, current));  // add traversed node to closed set
-            
+            closed_set.insert(pair<int, Node*>(c_id, current));  // add traversed node to closed set
+     
         
             /////////continue here from line 110
             for (unsigned int i =0; i<motion.size(); i++){
@@ -116,10 +124,11 @@ public:
 
                 //Verification of new node
                 //Node not out of bounds or collding with obstacle
-                if(!this->verify_node(node)){ continue; }
+                if(!this->verify_node(node)){ continue;}
+            
                 //Node exists on already traversed node then do nothin
                 if(closed_set.count(n_id)>0){ continue; }
-
+               
                 if(open_set.count(n_id)==0){ open_set.insert(pair<int, Node*>(n_id, node)); }
                 else{
                     if(open_set.at(n_id)->cost > node->cost){open_set.insert(pair<int, Node*>(n_id, node)); }
@@ -204,14 +213,13 @@ public:
     bool verify_node(Node* node){
         float px  = this->calc_grid_pos(node->x, this->min_x);
         float py = this->calc_grid_pos(node->y, this->min_y);
-         if (px < this->min_x || py < this->min_y || 
-                px >= this->max_x || py >= max_y){
-                    return false;
-                } //Out of bounds grid check
+         if (px < this->min_x || py < this->min_y || px >= this->max_x || py >= max_y){
+            return false;
+        } //Out of bounds grid check
        
-       if (this->obmap[node->x][node->y ] == true){
+       if (this->obmap[node->x][node->y] == true){
            return false;
-       } //if node resides on obstacle map--> collision==TRUE
+        } //if node resides on obstacle map--> collision==TRUE
 
         return true;
     }
