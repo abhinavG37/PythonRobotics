@@ -85,37 +85,32 @@ public:
         map<int, Node*> closed_set;
 
 // {  TAKES A pointer to NODE object}     //calc_grid_index(Node* node)
-         open_set.insert(pair<int, Node*>(this->calc_grid_index(startNode), startNode));
-         int count =0;
-        cv::Mat bg(this->resolution*this->x_width,
-                 this->resolution*this->y_width,
-                 CV_8UC3,
-                 cv::Scalar(255,255,255));
-
+       open_set.insert(pair<int, Node*>(this->calc_grid_index(startNode), startNode));
+       int count =0;
 
       while(true){
-            count += 1;
-            printf("%d\n", count);
-            if(open_set.empty()){
-                printf("OPEN SET EMPTY");
-                break;
-            }
-            
-            //LINE 81: Needs a lambda function equivalent ---C++ functor---- to capture max cost Node in open_set  
-            map<int, Node*>::iterator it;
+          count += 1;
+          printf("%d\n", count);
+          if(open_set.empty()){
+              printf("OPEN SET EMPTY");
+              break;
+          }
 
-            int c_id= 0; //grid index of current node used as key in open_set 
-            
-     
-            //BLOCK FUNCTIONING NOT PROPER
-            for(it = open_set.begin(); it != open_set.end(); it++){
-                auto temp_min_cost = (it->second->cost)+this->calc_heuristic
-                                                    (goalNode, it->second);
-                if( (it->second->cost)+this->calc_heuristic(goalNode, it->second) <= temp_min_cost){
-                    c_id = it->first;
-                }
-            } //find key corresponding to a temp_min_cost
-            Node* current = open_set.at(c_id); //ERROR
+          //LINE 81: Needs a lambda function equivalent ---C++ functor---- to capture max cost Node in open_set
+          map<int, Node*>::iterator it;
+
+          int c_id= 0; //grid index of current node used as key in open_set
+
+
+          //BLOCK FUNCTIONING NOT PROPER
+          for(it = open_set.begin(); it != open_set.end(); it++){
+              auto temp_min_cost = (it->second->cost)+this->calc_heuristic
+                                                  (goalNode, it->second);
+              if( (it->second->cost)+this->calc_heuristic(goalNode, it->second) <= temp_min_cost){
+                  c_id = it->first;
+              }
+          } //find key corresponding to a temp_min_cost
+          Node* current = open_set.at(c_id); //ERROR
 
 
           cv::rectangle(bg,
@@ -162,18 +157,19 @@ public:
                 else{
                     if(open_set.at(n_id)->cost > node->cost){open_set.insert(pair<int, Node*>(n_id, node)); }
                 }
-              cv::rectangle(bg,
-                            cv::Point(node->x*this->resolution+1,
-                                        node->y*this->resolution+1),
-                            cv::Point((node->x+1)*this->resolution, (node->y+1)*this->resolution),
-                            cv::Scalar(0, 255, 0));
+                cv::rectangle(bg,
+                              cv::Point(node->x*this->resolution+1,
+                                          node->y*this->resolution+1),
+                              cv::Point((node->x+1)*this->resolution, (node->y+1)*this->resolution),
+                              cv::Scalar(0, 255, 0));
 
-              cv::imshow("astar", bg);
-              int k = cv::waitKey(5);
-              if((k & 0xFF) == 27) {
-                cv::destroyAllWindows();
+                cv::imshow("astar", bg);
+
+                int k = cv::waitKey(5);
+                if((k & 0xFF) == 27) {
+                  cv::destroyAllWindows();
+                }
               }
-            }
 
           }
         return this->calc_final_path(goalNode, closed_set);
@@ -196,12 +192,14 @@ public:
         this->y_width = round((this->max_y - this->min_y) / this->resolution);
         printf("x_width: %f", this->x_width);
         printf("y_width: %f", this->y_width);
-      cv::Mat img(this->resolution*this->x_width,
-                  this->resolution*this->y_width,
-                  CV_8UC3,
-                  cv::Scalar(100,100,100));
-        vector<vector<int>> temp_obmap((int)this->y_width, vector<int>
-            ((int)this->x_width, 0));
+
+
+        this->bg = cv::Mat(this->resolution*this->x_width,
+                         this->resolution*this->y_width,
+                         CV_8UC3,
+                         cv::Scalar(255,255,255));
+
+        vector<vector<int>> temp_obmap((int)this->y_width, vector<int>((int)this->x_width, 0));
         for(int  i =0; i<this->x_width; i++){
             int x = this->calc_grid_pos(i, this->min_x);
             for(int j = 0; j<this->y_width; j++){
@@ -213,7 +211,8 @@ public:
                         cv::rectangle(this->bg, cv::Point(i*this->resolution+1,
                                                      j*this->resolution+1),
                                       cv::Point((i+1)*this->resolution, (j+1)*this->resolution),cv::Scalar(0,0,0), 1);
-                        cv::imshow("astar", img);
+                        cv::imshow("astar", this->bg);
+
                         int k = cv::waitKey(5);
                         if((k & 0xFF) == 27) {
                           cv::destroyAllWindows();
@@ -318,7 +317,7 @@ int main(int argc, char* argv[]){
     //Grid properties
     int grid_rows = 10;
     int grid_cols  = 10;
-    float grid_resolution = 2.0;        //[m]
+    float grid_resolution = 5.0;        //[m]
     //Robot Properties
     float robot_radius     = 1.0;   //[m]
     
@@ -352,7 +351,7 @@ int main(int argc, char* argv[]){
     }
 
     //Calling constructor for A_Star_planner Class
-    cv::namedWindow("astar", cv::WINDOW_FULLSCREEN);
+    cv::namedWindow("astar", cv::WINDOW_NORMAL);
     A_Star_planner planner_obj(grid_rows, grid_cols, grid_resolution, ox_, oy_, robot_radius);
     //Calling planner function
     vector<vector<float>> rxry = planner_obj.planner(sx, sy, gx,gy);

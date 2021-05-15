@@ -16,6 +16,9 @@ set( CMAKE_CXX_FLAGS "-Wall -Wextra ")
 set( CMAKE_CXX_FLAGS_DEBUG "-g -O0")
 
 add_executable(A_star ${CMAKE_CURRENT_SOURCE_DIR}/src/A_Star.cpp)
+find_package(OpenCV 4.0 REQUIRED)
+target_include_directories(A_star PUBLIC ${OpenCV_INCLUDE_DIRS})
 
+target_link_libraries(A_star PUBLIC ${OpenCV_LIBS})
 add_executable(Test ${CMAKE_CURRENT_SOURCE_DIR}/src/Test.cpp)
 
