@@ -19,8 +19,6 @@ map
 -
 string
 -
-sciplot/sciplot.hpp
--
 opencv2/core.hpp
 -
 opencv2/opencv.hpp
