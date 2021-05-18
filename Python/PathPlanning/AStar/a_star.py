@@ -248,18 +248,24 @@ def main():
 
     # set obstacle positions
     ox, oy = [], []
-    for i in range(-10, 60):
-        ox.append(i)
-        oy.append(-10.0)
-    for i in range(-10, 60):
-        ox.append(60.0)
-        oy.append(i)
     for i in range(-10, 61):
         ox.append(i)
         oy.append(60.0)
+    #     //top wall
+    for i in range(-10, 60):
+        ox.append(i)
+        oy.append(-10.0)
+        #bottom wall
+
     for i in range(-10, 61):
         ox.append(-10.0)
         oy.append(i)
+    #     left wall
+    for i in range(-10, 60):
+        ox.append(60.0)
+        oy.append(i)
+        #right wall
+
     for i in range(-10, 40):
         ox.append(20.0)
         oy.append(i)
