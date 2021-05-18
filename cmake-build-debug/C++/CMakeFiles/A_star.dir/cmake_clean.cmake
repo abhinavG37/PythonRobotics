@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "A_star"
-  "A_star.pdb"
+  "../../C++/bin/A_star"
+  "../../C++/bin/A_star.pdb"
   "CMakeFiles/A_star.dir/src/A_Star.cpp.o"
 )
 
