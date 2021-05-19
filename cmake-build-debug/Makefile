@@ -130,6 +130,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named A_star
+
+# Build rule for target.
+A_star: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 A_star
+.PHONY : A_star
+
+# fast build rule for target.
+A_star/fast:
+	$(MAKE) $(MAKESILENT) -f C++/CMakeFiles/A_star.dir/build.make C++/CMakeFiles/A_star.dir/build
+.PHONY : A_star/fast
+
+#=============================================================================
 # Target rules for targets named Test
 
 # Build rule for target.
@@ -143,17 +156,30 @@ Test/fast:
 .PHONY : Test/fast
 
 #=============================================================================
-# Target rules for targets named A_star
+# Target rules for targets named KalmanBasic
 
 # Build rule for target.
-A_star: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 A_star
-.PHONY : A_star
+KalmanBasic: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 KalmanBasic
+.PHONY : KalmanBasic
 
 # fast build rule for target.
-A_star/fast:
-	$(MAKE) $(MAKESILENT) -f C++/CMakeFiles/A_star.dir/build.make C++/CMakeFiles/A_star.dir/build
-.PHONY : A_star/fast
+KalmanBasic/fast:
+	$(MAKE) $(MAKESILENT) -f C++/CMakeFiles/KalmanBasic.dir/build.make C++/CMakeFiles/KalmanBasic.dir/build
+.PHONY : KalmanBasic/fast
+
+#=============================================================================
+# Target rules for targets named particleFilter
+
+# Build rule for target.
+particleFilter: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 particleFilter
+.PHONY : particleFilter
+
+# fast build rule for target.
+particleFilter/fast:
+	$(MAKE) $(MAKESILENT) -f C++/CMakeFiles/particleFilter.dir/build.make C++/CMakeFiles/particleFilter.dir/build
+.PHONY : particleFilter/fast
 
 # Help Target
 help:
@@ -164,7 +190,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... A_star"
+	@echo "... KalmanBasic"
 	@echo "... Test"
+	@echo "... particleFilter"
 .PHONY : help
 
 

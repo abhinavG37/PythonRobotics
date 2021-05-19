@@ -1,5 +1,4 @@
 /snap/clion/151/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/home/abhinav137/Desktop/Code Projects/PyRobotics"
--- Found OpenCV: /usr/local (found suitable version "4.5.2", minimum required is "4.0") 
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug

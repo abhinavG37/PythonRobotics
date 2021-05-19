@@ -40,7 +40,6 @@ public:
     Node(float x, float y, float cost, int parent_index,
          Node *p_node_ = nullptr) {
       this->x = x;
-      this->y = y;
       this->cost = cost;
       this->parent_index = parent_index;
       parent_node = p_node_;

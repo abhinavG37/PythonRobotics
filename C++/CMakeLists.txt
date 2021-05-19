@@ -19,8 +19,19 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 
 add_executable(A_star ${CMAKE_CURRENT_SOURCE_DIR}/src/A_Star.cpp)
 find_package(OpenCV 4.0 REQUIRED)
-target_include_directories(A_star PUBLIC ${OpenCV_INCLUDE_DIRS})
+find_package(Eigen3 REQUIRED)
+include_directories(${EIGEN3_INCLUDE_DIR})
 
+target_include_directories(A_star PUBLIC ${OpenCV_INCLUDE_DIRS})
 target_link_libraries(A_star PUBLIC ${OpenCV_LIBS})
+
 add_executable(Test ${CMAKE_CURRENT_SOURCE_DIR}/src/Test.cpp)
+
+
+add_executable(KalmanBasic ${CMAKE_CURRENT_SOURCE_DIR}/src/KalmanFilterBasic.cpp)
+target_link_libraries(KalmanBasic PUBLIC ${OpenCV_LIBS})
+
+
+add_executable(particleFilter ${CMAKE_CURRENT_SOURCE_DIR}/src/ParticleFilter.cpp)
+target_link_libraries(particleFilter PUBLIC ${OpenCV_LIBS})
 
