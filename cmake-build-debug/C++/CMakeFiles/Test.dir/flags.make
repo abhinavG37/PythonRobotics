@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/local/include/eigen3
+CXX_INCLUDES = -I/usr/local/include/eigen3 -I"/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/include"
 
 CXX_FLAGS = -Wall -Wextra  -g -O0 -std=gnu++17
 

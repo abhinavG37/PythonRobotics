@@ -19,8 +19,8 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 
 add_executable(A_star ${CMAKE_CURRENT_SOURCE_DIR}/src/A_Star.cpp)
 find_package(OpenCV 4.0 REQUIRED)
-find_package(Eigen3 REQUIRED)
-include_directories(${EIGEN3_INCLUDE_DIR})
+find_package(Eigen3 3.0 REQUIRED)
+include_directories(${EIGEN3_INCLUDE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 target_include_directories(A_star PUBLIC ${OpenCV_INCLUDE_DIRS})
 target_link_libraries(A_star PUBLIC ${OpenCV_LIBS})
