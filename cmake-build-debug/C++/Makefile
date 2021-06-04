@@ -58,10 +58,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/151/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/152/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/151/bin/cmake/linux/bin/cmake -E rm -f
+RM = /snap/clion/152/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -78,7 +78,7 @@ CMAKE_BINARY_DIR = "/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-buil
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/151/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/snap/clion/152/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -89,7 +89,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/snap/clion/151/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/snap/clion/152/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -128,6 +128,36 @@ preinstall/fast:
 depend:
 	cd "/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+# Convenience name for target.
+C++/CMakeFiles/scratch.dir/rule:
+	cd "/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 C++/CMakeFiles/scratch.dir/rule
+.PHONY : C++/CMakeFiles/scratch.dir/rule
+
+# Convenience name for target.
+scratch: C++/CMakeFiles/scratch.dir/rule
+
+.PHONY : scratch
+
+# fast build rule for target.
+scratch/fast:
+	cd "/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f C++/CMakeFiles/scratch.dir/build.make C++/CMakeFiles/scratch.dir/build
+.PHONY : scratch/fast
+
+# Convenience name for target.
+C++/CMakeFiles/ICP.dir/rule:
+	cd "/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 C++/CMakeFiles/ICP.dir/rule
+.PHONY : C++/CMakeFiles/ICP.dir/rule
+
+# Convenience name for target.
+ICP: C++/CMakeFiles/ICP.dir/rule
+
+.PHONY : ICP
+
+# fast build rule for target.
+ICP/fast:
+	cd "/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f C++/CMakeFiles/ICP.dir/build.make C++/CMakeFiles/ICP.dir/build
+.PHONY : ICP/fast
 
 # Convenience name for target.
 C++/CMakeFiles/A_star.dir/rule:
@@ -216,6 +246,33 @@ src/A_Star.cpp.s:
 	cd "/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f C++/CMakeFiles/A_star.dir/build.make C++/CMakeFiles/A_star.dir/src/A_Star.cpp.s
 .PHONY : src/A_Star.cpp.s
 
+src/ICP.o: src/ICP.cpp.o
+
+.PHONY : src/ICP.o
+
+# target to build an object file
+src/ICP.cpp.o:
+	cd "/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f C++/CMakeFiles/ICP.dir/build.make C++/CMakeFiles/ICP.dir/src/ICP.cpp.o
+.PHONY : src/ICP.cpp.o
+
+src/ICP.i: src/ICP.cpp.i
+
+.PHONY : src/ICP.i
+
+# target to preprocess a source file
+src/ICP.cpp.i:
+	cd "/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f C++/CMakeFiles/ICP.dir/build.make C++/CMakeFiles/ICP.dir/src/ICP.cpp.i
+.PHONY : src/ICP.cpp.i
+
+src/ICP.s: src/ICP.cpp.s
+
+.PHONY : src/ICP.s
+
+# target to generate assembly for a file
+src/ICP.cpp.s:
+	cd "/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f C++/CMakeFiles/ICP.dir/build.make C++/CMakeFiles/ICP.dir/src/ICP.cpp.s
+.PHONY : src/ICP.cpp.s
+
 src/KalmanFilterBasic.o: src/KalmanFilterBasic.cpp.o
 
 .PHONY : src/KalmanFilterBasic.o
@@ -297,6 +354,33 @@ src/Test.cpp.s:
 	cd "/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f C++/CMakeFiles/Test.dir/build.make C++/CMakeFiles/Test.dir/src/Test.cpp.s
 .PHONY : src/Test.cpp.s
 
+src/scratch.o: src/scratch.cpp.o
+
+.PHONY : src/scratch.o
+
+# target to build an object file
+src/scratch.cpp.o:
+	cd "/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f C++/CMakeFiles/scratch.dir/build.make C++/CMakeFiles/scratch.dir/src/scratch.cpp.o
+.PHONY : src/scratch.cpp.o
+
+src/scratch.i: src/scratch.cpp.i
+
+.PHONY : src/scratch.i
+
+# target to preprocess a source file
+src/scratch.cpp.i:
+	cd "/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f C++/CMakeFiles/scratch.dir/build.make C++/CMakeFiles/scratch.dir/src/scratch.cpp.i
+.PHONY : src/scratch.cpp.i
+
+src/scratch.s: src/scratch.cpp.s
+
+.PHONY : src/scratch.s
+
+# target to generate assembly for a file
+src/scratch.cpp.s:
+	cd "/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f C++/CMakeFiles/scratch.dir/build.make C++/CMakeFiles/scratch.dir/src/scratch.cpp.s
+.PHONY : src/scratch.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -306,12 +390,17 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... A_star"
+	@echo "... ICP"
 	@echo "... KalmanBasic"
 	@echo "... Test"
 	@echo "... particleFilter"
+	@echo "... scratch"
 	@echo "... src/A_Star.o"
 	@echo "... src/A_Star.i"
 	@echo "... src/A_Star.s"
+	@echo "... src/ICP.o"
+	@echo "... src/ICP.i"
+	@echo "... src/ICP.s"
 	@echo "... src/KalmanFilterBasic.o"
 	@echo "... src/KalmanFilterBasic.i"
 	@echo "... src/KalmanFilterBasic.s"
@@ -321,6 +410,9 @@ help:
 	@echo "... src/Test.o"
 	@echo "... src/Test.i"
 	@echo "... src/Test.s"
+	@echo "... src/scratch.o"
+	@echo "... src/scratch.i"
+	@echo "... src/scratch.s"
 .PHONY : help
 
 

@@ -54,10 +54,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/151/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/152/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/151/bin/cmake/linux/bin/cmake -E rm -f
+RM = /snap/clion/152/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -90,6 +90,8 @@ clean: C++/clean
 # Directory level rules for directory C++
 
 # Recursive "all" directory target.
+C++/all: C++/CMakeFiles/scratch.dir/all
+C++/all: C++/CMakeFiles/ICP.dir/all
 C++/all: C++/CMakeFiles/A_star.dir/all
 C++/all: C++/CMakeFiles/Test.dir/all
 C++/all: C++/CMakeFiles/KalmanBasic.dir/all
@@ -103,12 +105,68 @@ C++/preinstall:
 .PHONY : C++/preinstall
 
 # Recursive "clean" directory target.
+C++/clean: C++/CMakeFiles/scratch.dir/clean
+C++/clean: C++/CMakeFiles/ICP.dir/clean
 C++/clean: C++/CMakeFiles/A_star.dir/clean
 C++/clean: C++/CMakeFiles/Test.dir/clean
 C++/clean: C++/CMakeFiles/KalmanBasic.dir/clean
 C++/clean: C++/CMakeFiles/particleFilter.dir/clean
 
 .PHONY : C++/clean
+
+#=============================================================================
+# Target rules for target C++/CMakeFiles/scratch.dir
+
+# All Build rule for target.
+C++/CMakeFiles/scratch.dir/all:
+	$(MAKE) $(MAKESILENT) -f C++/CMakeFiles/scratch.dir/build.make C++/CMakeFiles/scratch.dir/depend
+	$(MAKE) $(MAKESILENT) -f C++/CMakeFiles/scratch.dir/build.make C++/CMakeFiles/scratch.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug/CMakeFiles" --progress-num=11,12 "Built target scratch"
+.PHONY : C++/CMakeFiles/scratch.dir/all
+
+# Build rule for subdir invocation for target.
+C++/CMakeFiles/scratch.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 C++/CMakeFiles/scratch.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug/CMakeFiles" 0
+.PHONY : C++/CMakeFiles/scratch.dir/rule
+
+# Convenience name for target.
+scratch: C++/CMakeFiles/scratch.dir/rule
+
+.PHONY : scratch
+
+# clean rule for target.
+C++/CMakeFiles/scratch.dir/clean:
+	$(MAKE) $(MAKESILENT) -f C++/CMakeFiles/scratch.dir/build.make C++/CMakeFiles/scratch.dir/clean
+.PHONY : C++/CMakeFiles/scratch.dir/clean
+
+#=============================================================================
+# Target rules for target C++/CMakeFiles/ICP.dir
+
+# All Build rule for target.
+C++/CMakeFiles/ICP.dir/all:
+	$(MAKE) $(MAKESILENT) -f C++/CMakeFiles/ICP.dir/build.make C++/CMakeFiles/ICP.dir/depend
+	$(MAKE) $(MAKESILENT) -f C++/CMakeFiles/ICP.dir/build.make C++/CMakeFiles/ICP.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug/CMakeFiles" --progress-num=3,4 "Built target ICP"
+.PHONY : C++/CMakeFiles/ICP.dir/all
+
+# Build rule for subdir invocation for target.
+C++/CMakeFiles/ICP.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 C++/CMakeFiles/ICP.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug/CMakeFiles" 0
+.PHONY : C++/CMakeFiles/ICP.dir/rule
+
+# Convenience name for target.
+ICP: C++/CMakeFiles/ICP.dir/rule
+
+.PHONY : ICP
+
+# clean rule for target.
+C++/CMakeFiles/ICP.dir/clean:
+	$(MAKE) $(MAKESILENT) -f C++/CMakeFiles/ICP.dir/build.make C++/CMakeFiles/ICP.dir/clean
+.PHONY : C++/CMakeFiles/ICP.dir/clean
 
 #=============================================================================
 # Target rules for target C++/CMakeFiles/A_star.dir
@@ -144,7 +202,7 @@ C++/CMakeFiles/A_star.dir/clean:
 C++/CMakeFiles/Test.dir/all:
 	$(MAKE) $(MAKESILENT) -f C++/CMakeFiles/Test.dir/build.make C++/CMakeFiles/Test.dir/depend
 	$(MAKE) $(MAKESILENT) -f C++/CMakeFiles/Test.dir/build.make C++/CMakeFiles/Test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug/CMakeFiles" --progress-num=5,6 "Built target Test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug/CMakeFiles" --progress-num=7,8 "Built target Test"
 .PHONY : C++/CMakeFiles/Test.dir/all
 
 # Build rule for subdir invocation for target.
@@ -171,7 +229,7 @@ C++/CMakeFiles/Test.dir/clean:
 C++/CMakeFiles/KalmanBasic.dir/all:
 	$(MAKE) $(MAKESILENT) -f C++/CMakeFiles/KalmanBasic.dir/build.make C++/CMakeFiles/KalmanBasic.dir/depend
 	$(MAKE) $(MAKESILENT) -f C++/CMakeFiles/KalmanBasic.dir/build.make C++/CMakeFiles/KalmanBasic.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug/CMakeFiles" --progress-num=3,4 "Built target KalmanBasic"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug/CMakeFiles" --progress-num=5,6 "Built target KalmanBasic"
 .PHONY : C++/CMakeFiles/KalmanBasic.dir/all
 
 # Build rule for subdir invocation for target.
@@ -198,7 +256,7 @@ C++/CMakeFiles/KalmanBasic.dir/clean:
 C++/CMakeFiles/particleFilter.dir/all:
 	$(MAKE) $(MAKESILENT) -f C++/CMakeFiles/particleFilter.dir/build.make C++/CMakeFiles/particleFilter.dir/depend
 	$(MAKE) $(MAKESILENT) -f C++/CMakeFiles/particleFilter.dir/build.make C++/CMakeFiles/particleFilter.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug/CMakeFiles" --progress-num=7,8 "Built target particleFilter"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/abhinav137/Desktop/Code Projects/PyRobotics/cmake-build-debug/CMakeFiles" --progress-num=9,10 "Built target particleFilter"
 .PHONY : C++/CMakeFiles/particleFilter.dir/all
 
 # Build rule for subdir invocation for target.

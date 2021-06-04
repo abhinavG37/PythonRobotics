@@ -94,9 +94,9 @@ def nearest_neighbor_association(previous_points, current_points):
     d = np.linalg.norm(delta_points, axis=0)
     error = sum(d)
 
-    # calc index with nearest neighbor assosiation
-    d = np.linalg.norm(np.repeat(current_points, previous_points.shape[1], axis=1)
-                       - np.tile(previous_points, (1, current_points.shape[1])), axis=0)
+    # calc index with nearest neighbor association
+    d = np.linalg.norm(np.repeat(current_points, previous_points.shape[1], axis=1)-np.tile(previous_points, (1, current_points.shape[1])), axis=0)
+
     indexes = np.argmin(d.reshape(current_points.shape[1], previous_points.shape[1]), axis=1)
 
     return indexes, error
@@ -106,7 +106,7 @@ def svd_motion_estimation(previous_points, current_points):
     pm = np.mean(previous_points, axis=1)
     cm = np.mean(current_points, axis=1)
 
-    p_shift = previous_points - pm[:, np.newaxis]
+    p_shift = previous_points - pm[:, np.newaxis] #shift from COM
     c_shift = current_points - cm[:, np.newaxis]
 
     W = c_shift @ p_shift.T

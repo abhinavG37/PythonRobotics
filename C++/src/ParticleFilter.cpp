@@ -4,7 +4,7 @@
 #include <iostream>
 #include<opencv2/highgui.hpp>
 #include <Eigen/Dense>
-#include <Eigen/src/core/EIGEN_ARITHMETIC_SEQUENCE_H>
+#include <Eigen/src/Core/ArithmeticSequence.h>
 #include "SimParams.h"
 #include <cmath>
 using namespace std;
@@ -27,6 +27,9 @@ public:
     Eigen::Vector4f h_x_dr = x_true;
   }
 };
+
+void observation()
+
 
 Eigen::Vector2d calc_input(){ //control input
   float v = 1.0;
@@ -63,10 +66,11 @@ Eigen::Matrix3f calc_covariance(Eigen::Vector4f x_est, Eigen::MatrixXf px, Eigen
   float sumsq = 0;
   for (int i = 0; i<NP;i++){
     Eigen::Vector4f dx = (px.col(i) - x_est)(0,Eigen::seq(0,3));
+    //Select only (x,y) and control input u
     cov += pw(i) * dx*dx.transpose();
     sumsq += pw(i)*pw(i);
   }
-  cov*= (1.0/(1.0-sumsq)); // Divide by sum Squared particle weight according to covariance eqn
+  cov*= (1.0/(1.0-sumsq));
   return cov;
 }
 
@@ -76,8 +80,8 @@ int main(){
   float time = 0.0;
   while (SIM_TIME>= time){
     time += DT;
-    auto u = calc_input();
-
+    Eigen::Vector2d u = calc_input();
+    x_true
   }
 
 }

@@ -35,3 +35,10 @@ target_link_libraries(KalmanBasic PUBLIC ${OpenCV_LIBS})
 add_executable(particleFilter ${CMAKE_CURRENT_SOURCE_DIR}/src/ParticleFilter.cpp)
 target_link_libraries(particleFilter PUBLIC ${OpenCV_LIBS})
 
+
+add_executable(ICP ${CMAKE_CURRENT_SOURCE_DIR}/src/ICP.cpp)
+target_link_libraries(ICP PUBLIC ${OpenCV_LIBS})
+
+
+add_executable(scratch ${CMAKE_CURRENT_SOURCE_DIR}/src/scratch.cpp)
+target_link_libraries(scratch PUBLIC ${OpenCV_LIBS})

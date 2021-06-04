@@ -17,6 +17,106 @@
 					<DistClean command="/usr/bin/make -j12 -f &quot;/home/abhinav137/Desktop/Code\ Projects/PyRobotics/cmake-build-debug/C++/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="scratch">
+				<Option output="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/bin/scratch" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/include"/>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/abhinav137/Desktop/Code\ Projects/PyRobotics/cmake-build-debug/C++/Makefile&quot;  VERBOSE=1 scratch"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/abhinav137/Desktop/Code\ Projects/PyRobotics/cmake-build-debug/C++/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/abhinav137/Desktop/Code\ Projects/PyRobotics/cmake-build-debug/C++/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/abhinav137/Desktop/Code\ Projects/PyRobotics/cmake-build-debug/C++/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="scratch/fast">
+				<Option output="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/bin/scratch" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/include"/>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/abhinav137/Desktop/Code\ Projects/PyRobotics/cmake-build-debug/C++/Makefile&quot;  VERBOSE=1 scratch/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/abhinav137/Desktop/Code\ Projects/PyRobotics/cmake-build-debug/C++/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/abhinav137/Desktop/Code\ Projects/PyRobotics/cmake-build-debug/C++/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/abhinav137/Desktop/Code\ Projects/PyRobotics/cmake-build-debug/C++/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ICP">
+				<Option output="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/bin/ICP" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/include"/>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/abhinav137/Desktop/Code\ Projects/PyRobotics/cmake-build-debug/C++/Makefile&quot;  VERBOSE=1 ICP"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/abhinav137/Desktop/Code\ Projects/PyRobotics/cmake-build-debug/C++/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/abhinav137/Desktop/Code\ Projects/PyRobotics/cmake-build-debug/C++/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/abhinav137/Desktop/Code\ Projects/PyRobotics/cmake-build-debug/C++/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ICP/fast">
+				<Option output="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/bin/ICP" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/include"/>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/abhinav137/Desktop/Code\ Projects/PyRobotics/cmake-build-debug/C++/Makefile&quot;  VERBOSE=1 ICP/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/abhinav137/Desktop/Code\ Projects/PyRobotics/cmake-build-debug/C++/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/abhinav137/Desktop/Code\ Projects/PyRobotics/cmake-build-debug/C++/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/abhinav137/Desktop/Code\ Projects/PyRobotics/cmake-build-debug/C++/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="A_star">
 				<Option output="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/bin/A_star" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/bin"/>
@@ -219,6 +319,9 @@
 		<Unit filename="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/src/A_Star.cpp">
 			<Option target="A_star"/>
 		</Unit>
+		<Unit filename="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/src/ICP.cpp">
+			<Option target="ICP"/>
+		</Unit>
 		<Unit filename="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/src/KalmanFilterBasic.cpp">
 			<Option target="KalmanBasic"/>
 		</Unit>
@@ -227,6 +330,9 @@
 		</Unit>
 		<Unit filename="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/src/Test.cpp">
 			<Option target="Test"/>
+		</Unit>
+		<Unit filename="/home/abhinav137/Desktop/Code Projects/PyRobotics/C++/src/scratch.cpp">
+			<Option target="scratch"/>
 		</Unit>
 		<Unit filename="/home/abhinav137/Desktop/Code Projects/PyRobotics/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
