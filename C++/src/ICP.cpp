@@ -48,39 +48,45 @@ std::tuple<std::vector<int>, float> nearest_neighbor_association( Eigen::MatrixX
     }
   }
   cout<<"SHAPE OF d:\t"<<d.rows()<<"\t"<<d.cols()<<endl;
-  cout<<"d:\t\n"<<d<<endl;
+//  cout<<"d:\t\n"<<d<<endl;
   printf("Reshaping\n");
-  cout<<"D1:\n"<<d1<<endl;
+//  cout<<"D1:\n"<<d1<<endl;
   cout<<"DONE"<<endl;
 
    return std::make_tuple(min_index,error);
 }
 
 std::tuple<Eigen::MatrixXd, Eigen::MatrixXd> svd_motion_estimation(Eigen::MatrixXd previous_points, Eigen::MatrixXd  current_points) {
-  Eigen::Vector<double,2> prev_mean = previous_points.colwise().mean();
-  Eigen::Vector<double,2> curr_mean = current_points.colwise().mean();
+  Eigen::MatrixXd prev_mean = previous_points.colwise().mean();
+  Eigen::MatrixXd curr_mean = current_points.colwise().mean();
   Eigen::MatrixXd temp             = prev_mean.colwise().replicate(previous_points.rows());
   Eigen::MatrixXd prev_shift       = previous_points - temp;
   temp                             = curr_mean.colwise().replicate(previous_points.rows());
   Eigen::MatrixXd curr_shift       = current_points - temp;
-  Eigen::MatrixXd W = curr_shift*prev_shift.transpose();
-  Eigen::JacobiSVD<Eigen::MatrixXd> svd1(W);
+  Eigen::MatrixXd W = prev_shift.transpose()*curr_shift;
+  Eigen::JacobiSVD<Eigen::MatrixXd> svd1(W, Eigen::ComputeThinU |Eigen::ComputeThinV);
+  cout<< "Dimension of U and V Vectors:"<< svd1.matrixU().rows() <<"\t"<< svd1.matrixU().cols() <<endl;
+  cout<< "Dimension of U and V Vectors:"<< svd1.matrixV().rows() <<"\t"<< svd1.matrixV().cols() <<endl;
+
   Eigen::MatrixXd R = (svd1.matrixU()*svd1.matrixV()).transpose();
-  Eigen::MatrixXd t   = prev_mean - (R*curr_mean);
+  cout<< "Dimension of R:"<< R.rows() <<"\t"<<R.cols()<<endl;
+  cout<< "Dimension of prev_mean:"<< prev_mean.rows() <<"\t"<<prev_mean.cols()<<endl;
+  cout<< "Dimension of curr_mean:"<< curr_mean.rows() <<"\t"<<curr_mean.cols()<<endl;
+  Eigen::MatrixXd t   = prev_mean - (curr_mean*R);
 
   return std::make_tuple(R,t);
 }
 
 
-Eigen::MatrixXd update_homogenous_matrix( Eigen::MatrixXd H_in, const Eigen::MatrixXd& R, Eigen::MatrixXd T){
+Eigen::MatrixXd update_homogenous_matrix( Eigen::MatrixXd H_in, const Eigen::MatrixXd& R, const Eigen::MatrixXd& T){
   int row_size = R.rows();
   Eigen::MatrixXd H = Eigen::MatrixXd::Constant( row_size+1, row_size+1, 0);
   H(Eigen::seq(0,row_size-1),Eigen::seq(0,row_size-1)) = R;
-  H(Eigen::seq(0,row_size-1),row_size) = T;
+  H(Eigen::seq(0,row_size-1),row_size) = T.transpose();
   H(row_size, row_size) = 1.0;
 
   if(H_in.rows() == 0)
-    return H_in;
+    return H;
   else
     return H_in*H;
 }
@@ -110,8 +116,8 @@ std::tuple<Eigen::MatrixXd,Eigen::VectorXd> icpMatching( Eigen::MatrixXd previou
     count +=1;
     std::tie(index, error) = nearest_neighbor_association(previous_points, current_points);
     std::tie(Rt, Tt) = svd_motion_estimation(previous_points, current_points);
-    current_points = Rt*current_points+Tt.colwise().replicate(Tt.rows());
-    dError-=preError-error;
+    current_points = current_points*Rt+Tt.colwise().replicate(current_points.rows());
+    dError=preError-error;
     printf("RESIDUAL:\t%f\n\n", error);
 
     if (dError < 0) {
@@ -128,6 +134,7 @@ std::tuple<Eigen::MatrixXd,Eigen::VectorXd> icpMatching( Eigen::MatrixXd previou
       printf("Not Converging Count:%d\t Error:%f\t dError:%f\t", count, error, dError);
       break;
     }
+    cout<<"H ROWS//COLS"<<H.rows()<<"\t"<<H.cols()<<endl;
     R = H(Eigen::seq(0,H.rows()-2),Eigen::seq(0,H.cols()-2));
     T = H(Eigen::seq(0,H.rows()-2),H.cols()-1);
   }
@@ -138,6 +145,8 @@ int main(){
 
   Eigen::Vector3f motion(0.5,2.0,M_PI/8.0);
   int nsim = 3;
+  Eigen::MatrixXd R;
+  Eigen::VectorXd T;
 
   for(int i = 0; i< nsim; i++) {
     Eigen::MatrixXd previous_points = Eigen::MatrixXd::Random(NPOINT, 2);
@@ -150,19 +159,10 @@ int main(){
 
     double prev_x, prev_y;
     for (int row = 0; row < NPOINT; row++) {
-      prev_x = previous_points(row, 0), prev_y = previous_points(row, 1);
-      current_points(row, 0) =
-          prev_x * cos(motion(2)) - sin(motion(2)) * prev_y + motion(0);
-      current_points(row, 1) =
-          prev_x * cos(motion(2)) - sin(motion(2)) * prev_y + motion(1);
+      prev_x =                     previous_points(row, 0), prev_y = previous_points(row, 1);
+      current_points(row, 0) = prev_x * cos(motion(2)) - sin(motion(2)) * prev_y + motion(0);
+      current_points(row, 1) = prev_x * cos(motion(2)) - sin(motion(2)) * prev_y + motion(1);
     }
-    cout <<"PREVIOUS POINTS:\n"<< previous_points << "\n\n\n";
-    cout << "CURRENT_POINTS:\n"<< current_points  << "\n\n\n";
-
-
-
-    Eigen::MatrixXd R;
-    Eigen::VectorXd T;
     std::tie(R, T) = icpMatching(previous_points, current_points);
     // unpack with std::tie
     cout << R << endl;
